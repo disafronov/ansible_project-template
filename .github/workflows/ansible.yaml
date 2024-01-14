@@ -108,7 +108,7 @@ jobs:
           playbook: playbooks/check.yml
           requirements: requirements.yml
           options: |
-            --inventory ${{ matrix.dir }}/hosts.ini
+            --inventory ${{ matrix.dir }}/inventory.yml
 
       - name: Run [deploy.yml] playbook on PUSH (except localhost)
         if: ${{ github.event_name == 'push' && matrix.dir != 'inventory/localhost' }}
@@ -117,4 +117,4 @@ jobs:
           playbook: playbooks/deploy.yml
           requirements: requirements.yml
           options: |
-            --inventory ${{ matrix.dir }}/hosts.ini
+            --inventory ${{ matrix.dir }}/inventory.yml
