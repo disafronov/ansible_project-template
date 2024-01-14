@@ -48,19 +48,23 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
+        if: ${{ matrix.dir != 'inventory' }}
         with:
           fetch-depth: 0
 
       - name: Install Mozilla SOPS
+        if: ${{ matrix.dir != 'inventory' }}
         uses: nhedger/setup-sops@v2
 
       - name: Install YQ
+        if: ${{ matrix.dir != 'inventory' }}
         uses: dcarbone/install-yq-action@v1.1.1
         with:
           version: v4.40.5
           download-compressed: true
 
       - name: Download custom requirements (if any)
+        if: ${{ matrix.dir != 'inventory' }}
         run: |
           if [ -s collections/requirements.sh -a ! -x collections/requirements.sh ]; then
             chmod -c a+x collections/requirements.sh
@@ -84,6 +88,7 @@ jobs:
           fi
 
       - name: Merge requirements files (if any)
+        if: ${{ matrix.dir != 'inventory' }}
         run: |
           if [ -s collections/requirements.yml ]; then
             cat collections/requirements.yml > collections.yml.tmp
@@ -101,7 +106,7 @@ jobs:
           rm -f roles.yml.tmp collections.yml.tmp
 
       - name: Run [check.yml] playbook on PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && matrix.dir != 'inventory' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/check.yml
@@ -110,7 +115,7 @@ jobs:
             --inventory ${{ matrix.dir }}/inventory.yml
 
       - name: Run [deploy.yml] playbook on PUSH
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && matrix.dir != 'inventory' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/deploy.yml
