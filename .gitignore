@@ -1,0 +1,28 @@
+# SOPS
+.decrypted~*
+
+# Collections
+# Ignore everything in collections dir
+/collections/**
+# Except:
+# the .gitignore file
+!/collections/.gitignore
+# the requirements file
+!/collections/requirements.yml
+# the requirements script
+!/collections/requirements.sh
+# Readme if you have one
+!/collections/README.md
+
+# ROLES
+# Ignore everything in roles dir
+/roles/**
+# Except:
+# the .gitignore file
+!/roles/.gitignore
+# the requirements file
+!/roles/requirements.yml
+# the requirements script
+!/roles/requirements.sh
+# Readme if you have one
+!/roles/README.md
