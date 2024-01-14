@@ -1,1 +1,1 @@
-# ansible-project
+# ansible_project-template
