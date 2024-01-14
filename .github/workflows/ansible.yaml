@@ -66,13 +66,13 @@ jobs:
       - name: Download custom requirements (if any)
         if: ${{ matrix.dir != 'inventory' }}
         run: |
-          if [ -s collections/requirements.sh -a ! -x collections/requirements.sh ]; then
-            chmod -c a+x collections/requirements.sh
+          if [ -s collections/ansible_collections/requirements.sh -a ! -x collections/ansible_collections/requirements.sh ]; then
+            chmod -c a+x collections/ansible_collections/requirements.sh
           fi
-          if [ -x collections/requirements.sh ]; then
+          if [ -x collections/ansible_collections/requirements.sh ]; then
             echo "Detected: collections"
             OLD_PWD="$(pwd)"
-            cd collections/
+            cd collections/ansible_collections/
             ./requirements.sh
             cd "${OLD_PWD}"
           fi
