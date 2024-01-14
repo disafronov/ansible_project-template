@@ -97,12 +97,12 @@ jobs:
           yq eval-all '. as $item ireduce ({}; . *+ $item)' collections.yml.tmp roles.yml.tmp > requirements.yml
           rm -f roles.yml.tmp collections.yml.tmp
 
-      - name: Install Mozilla SOPS (except localhost)
+      - name: Install Mozilla SOPS
         if: ${{ matrix.dir != 'inventory/localhost' }}
         uses: nhedger/setup-sops@v2
 
-      - name: Run [check.yml] playbook on PR (except localhost)
-        if: ${{ github.event_name == 'pull_request' && matrix.dir != 'inventory/localhost' }}
+      - name: Run [check.yml] playbook on PR
+        if: ${{ github.event_name == 'pull_request' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/check.yml
@@ -110,8 +110,8 @@ jobs:
           options: |
             --inventory ${{ matrix.dir }}/inventory.yml
 
-      - name: Run [deploy.yml] playbook on PUSH (except localhost)
-        if: ${{ github.event_name == 'push' && matrix.dir != 'inventory/localhost' }}
+      - name: Run [deploy.yml] playbook on PUSH
+        if: ${{ github.event_name == 'push' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbooks/deploy.yml
