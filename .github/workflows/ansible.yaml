@@ -51,6 +51,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Mozilla SOPS
+        uses: nhedger/setup-sops@v2
+
       - name: Install YQ
         uses: dcarbone/install-yq-action@v1.1.1
         with:
@@ -96,10 +99,6 @@ jobs:
           fi
           yq eval-all '. as $item ireduce ({}; . *+ $item)' collections.yml.tmp roles.yml.tmp > requirements.yml
           rm -f roles.yml.tmp collections.yml.tmp
-
-      - name: Install Mozilla SOPS
-        if: ${{ matrix.dir != 'inventory/localhost' }}
-        uses: nhedger/setup-sops@v2
 
       - name: Run [check.yml] playbook on PR
         if: ${{ github.event_name == 'pull_request' }}
