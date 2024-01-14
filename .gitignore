@@ -1,28 +1,26 @@
 # SOPS
 .decrypted~*
 
-# Collections
+# COLLECTIONS
 # Ignore everything in collections dir
+!/collections/
 /collections/**
 # Except:
-# the .gitignore file
 !/collections/.gitignore
-# the requirements file
-!/collections/requirements.yml
-# the requirements script
-!/collections/requirements.sh
-# Readme if you have one
 !/collections/README.md
+!/collections/requirements.yml
+# local COLLECTIONS
+!/collections/ansible_collections/
+!/collections/ansible_collections/.gitignore
+!/collections/ansible_collections/README.md
+!/collections/ansible_collections/requirements.sh
 
 # ROLES
 # Ignore everything in roles dir
+!/roles/
 /roles/**
 # Except:
-# the .gitignore file
 !/roles/.gitignore
-# the requirements file
-!/roles/requirements.yml
-# the requirements script
-!/roles/requirements.sh
-# Readme if you have one
 !/roles/README.md
+!/roles/requirements.yml
+!/roles/requirements.sh

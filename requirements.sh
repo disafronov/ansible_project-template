@@ -10,10 +10,10 @@ die () {
 
 # SH
 
-if [ -s collections/requirements.sh ]; then
-  echo "Detected: collections/requirements.sh"
+if [ -s collections/ansible_collections/requirements.sh ]; then
+  echo "Detected: collections/ansible_collections/requirements.sh"
   OLD_PWD="$(pwd)"
-  cd collections/
+  cd collections/ansible_collections/
   bash ./requirements.sh || die "cound not download collections add-ins"
   cd "${OLD_PWD}"
 fi
