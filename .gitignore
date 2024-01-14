@@ -24,3 +24,6 @@
 !/roles/README.md
 !/roles/requirements.yml
 !/roles/requirements.sh
+
+# UPDATE
+.update/
