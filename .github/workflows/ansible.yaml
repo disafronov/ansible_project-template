@@ -47,10 +47,16 @@ jobs:
       - find-out-changed-inventories
     steps:
 
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
         if: ${{ matrix.dir != 'inventory' }}
         with:
           fetch-depth: 0
+
+      - name: Install & configure ssh-agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}
 
       - name: Install Mozilla SOPS
         if: ${{ matrix.dir != 'inventory' }}
@@ -113,6 +119,8 @@ jobs:
           requirements: requirements.yml
           options: |
             --inventory ${{ matrix.dir }}/inventory.yml
+        env:
+          ANSIBLE_SOPS_AGE_KEY: ${{ secrets.ANSIBLE_SOPS_AGE_KEY }}
 
       - name: Run [deploy.yml] playbook on PUSH
         if: ${{ github.event_name == 'push' && matrix.dir != 'inventory' }}
@@ -122,3 +130,5 @@ jobs:
           requirements: requirements.yml
           options: |
             --inventory ${{ matrix.dir }}/inventory.yml
+        env:
+          ANSIBLE_SOPS_AGE_KEY: ${{ secrets.ANSIBLE_SOPS_AGE_KEY }}
