@@ -2,5 +2,5 @@
 
 Github Actons will:
 
-- Run playbook `check.yml` on pull request to branch `main`;
-- Run playbook `deploy.yml` on push into branch `main`.
+- Run playbook `pr.yml` on pull request to branch `main`;
+- Run playbook `push.yml` on push into branch `main`.
