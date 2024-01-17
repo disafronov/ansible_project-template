@@ -19,7 +19,8 @@ jobs:
       changed_directories: ${{ steps.set-output.outputs.changed_directories }}  # The `dirs` doesn't exist in the outputs of changed-files@v35 action.
     steps:
 
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -34,6 +35,7 @@ jobs:
           quotepath: false
 
       - name: Set output in the matrix format
+        if: ${{ steps.changed-files.outputs != '' }}
         id: set-output
         run: echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "$GITHUB_OUTPUT"
 
@@ -54,6 +56,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install & configure ssh-agent
+        if: ${{ matrix.dir != 'inventory' }}
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}
@@ -112,23 +115,23 @@ jobs:
           rm -f roles.yml.tmp collections.yml.tmp
 
       - name: Run [check.yml] playbook on PR
-        if: ${{ github.event_name == 'pull_request' && matrix.dir != 'inventory' }}
+        if: ${{ matrix.dir != 'inventory' && github.event_name == 'pull_request' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/check.yml
+          playbook: playbooks/pr.yml
           requirements: requirements.yml
           options: |
-            --inventory ${{ matrix.dir }}/inventory.yml
+            --inventory ${{ matrix.dir }}
         env:
           ANSIBLE_SOPS_AGE_KEY: ${{ secrets.ANSIBLE_SOPS_AGE_KEY }}
 
       - name: Run [deploy.yml] playbook on PUSH
-        if: ${{ github.event_name == 'push' && matrix.dir != 'inventory' }}
+        if: ${{ matrix.dir != 'inventory' && github.event_name == 'push' }}
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/deploy.yml
+          playbook: playbooks/push.yml
           requirements: requirements.yml
           options: |
-            --inventory ${{ matrix.dir }}/inventory.yml
+            --inventory ${{ matrix.dir }}
         env:
           ANSIBLE_SOPS_AGE_KEY: ${{ secrets.ANSIBLE_SOPS_AGE_KEY }}

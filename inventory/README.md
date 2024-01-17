@@ -2,5 +2,5 @@
 
 This directory should contain subdirectories with:
 
-- Required file `inventory.yml`
+- Required Ansible inventory;
 - Optional Ansible inventory configuration.
