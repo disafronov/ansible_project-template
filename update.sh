@@ -2,7 +2,7 @@
 
 git \
   clone \
-  https://github.com/dmitriysafronov/ansible-project.git \
+  https://github.com/dmitriysafronov/ansible_project-template.git \
   .update
 
 rsync -av \
@@ -17,8 +17,8 @@ rsync -av \
   --include=inventory/README.md \
   --include=playbooks/ \
   --include=playbooks/README.md \
-  --include=roles/README.md\
   --include=roles/ \
+  --include=roles/README.md\
   --include=.gitignore \
   --include=ansible.cfg \
   --include=requirements.sh \
