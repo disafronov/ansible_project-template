@@ -2,7 +2,7 @@
 
 git \
   clone \
-  https://github.com/dmitriysafronov/ansible-project.git \
+  https://github.com/dmitriysafronov/ansible_project-template.git \
   .update
 
 rsync -av \
