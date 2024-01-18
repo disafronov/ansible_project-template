@@ -4,13 +4,14 @@
 # COLLECTIONS
 # Ignore everything in collections dir
 !/collections/
-/collections/**
+/collections/*
 # Except:
 !/collections/.gitignore
 !/collections/README.md
 !/collections/requirements.yml
 # local COLLECTIONS
 !/collections/ansible_collections/
+/collections/ansible_collections/*
 !/collections/ansible_collections/.gitignore
 !/collections/ansible_collections/README.md
 !/collections/ansible_collections/requirements.sh
@@ -18,7 +19,7 @@
 # ROLES
 # Ignore everything in roles dir
 !/roles/
-/roles/**
+/roles/*
 # Except:
 !/roles/.gitignore
 !/roles/README.md
