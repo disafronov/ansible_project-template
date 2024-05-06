@@ -19,7 +19,7 @@ jobs:
       directories: ${{ steps.changed-files.outputs.directories }}
     steps:
       - name: Get Ansible changed inventories directories
-        uses: dmitriysafronov/get-ansible-changed-inventories@v1.0.1
+        uses: dmitriysafronov/get-ansible-changed-inventories@v1.0.2
         id: changed-files
 
   run-ansible-on-changed-inventories:
