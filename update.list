@@ -14,3 +14,5 @@ playbooks/README.md
 roles/
 roles/README.md
 requirements.sh
+update.list
+update.sh
