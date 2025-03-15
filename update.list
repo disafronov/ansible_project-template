@@ -1,0 +1,16 @@
+.github/
+.github/workflows/
+.github/workflows/ansible.yaml
+.github/workflows/push-rebase.yaml
+.github/workflows/schedule_update-from-template.yaml
+collections/
+collections/README.md
+collections/ansible_collections/
+collections/ansible_collections/README.md
+inventory/
+inventory/README.md
+playbooks/
+playbooks/README.md
+roles/
+roles/README.md
+requirements.sh
