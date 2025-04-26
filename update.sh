@@ -2,7 +2,7 @@
 
 git \
   clone \
-  https://github.com/dmitriysafronov/ansible_project-template.git \
+  https://github.com/disafronov/ansible_project-template.git \
   .update
 
 LATEST_TAG="$(git -C .update tag | grep -e '^v' | sort -V | tail -n 1)"
