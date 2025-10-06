@@ -10,6 +10,9 @@ name: Ansible
     paths:
       - "inventory/**/*"
 
+permissions:
+  contents: read
+
 jobs:
 
   find-out-changed-inventories:
