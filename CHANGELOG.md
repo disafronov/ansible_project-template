@@ -1,3 +1,9 @@
+## [1.0.42](https://github.com/disafronov/ansible_project-template/compare/v1.0.41...v1.0.42) (2026-11-02)
+
+### Code Refactoring
+
+* sync from template v3.0.0 ([c3cd97b](https://github.com/disafronov/ansible_project-template/commit/c3cd97b3367f06120d133601dce92415915be65c))
+
 ## [1.0.41](https://github.com/disafronov/ansible_project-template/compare/v1.0.40...v1.0.41) (2026-10-29)
 
 ### Code Refactoring
