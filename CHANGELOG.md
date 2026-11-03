@@ -1,3 +1,9 @@
+## [1.0.44](https://github.com/disafronov/ansible_project-template/compare/v1.0.43...v1.0.44) (2026-11-03)
+
+### Code Refactoring
+
+* sync from disafronov/semantic-basic-template v3.0.2 ([83b2952](https://github.com/disafronov/ansible_project-template/commit/83b2952f684ac1c28c0b4827d3769958649cfa4c))
+
 ## [1.0.43](https://github.com/disafronov/ansible_project-template/compare/v1.0.42...v1.0.43) (2026-11-02)
 
 ### Code Refactoring
